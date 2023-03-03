@@ -121,6 +121,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates/static')]
 
-
 ASSETS_URL = '/assets/'
 ASSETS_ROOT =  os.path.join(BASE_DIR, 'templates/assets')
