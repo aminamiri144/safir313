@@ -35,6 +35,7 @@ class RegisterView(LoginRequiredMixin, View):
                                 lastname=kid_form.cleaned_data['lastname'],
                                 age=kid_form.cleaned_data['age'],
                                 gender=kid_form.cleaned_data['gender'],
+                                phone=kid_form.cleaned_data['phone'],
                             )
                             save_kid.save()
 
@@ -43,12 +44,18 @@ class RegisterView(LoginRequiredMixin, View):
                             context['kid'] = save_kid
                         else:
                             context['error'] = 'این مشخصات (نام و نام خانوادگی) قبلا ثبت شده'
-                            kid_data = Kid.objects.filter(codmeli=code_meli)[0]
-                            context['kid'] = kid_data
+                            try:
+                                kid_data = Kid.objects.filter(codmeli=code_meli)[0]
+                                context['kid'] = kid_data
+                            except:
+                                pass
                     else:
                         context['error'] = 'کد ملی قبلا ثبت شده است'
-                        kid_data = Kid.objects.filter(codmeli=code_meli)[0]
-                        context['kid'] = kid_data
+                        try:
+                                kid_data = Kid.objects.filter(codmeli=code_meli)[0]
+                                context['kid'] = kid_data
+                        except:
+                            pass
                 else:
                     context['error'] = 'کد ملی وارد شده نامعتبر است، لطفا کد ملی صحیح وارد کنید.'
             else:

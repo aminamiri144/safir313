@@ -74,9 +74,21 @@ WSGI_APPLICATION = 'safir313.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'HOST': 'localhost',
+#         'NAME': 'safzoh',
+#         'PORT': '5432',
+#         'USER': 'postgres',
+#         'PASSWORD': '125313',
+#     }
+# }
+# DATABASES = {'default': dj_database_url.config(default='postgresql://root:4LHOdFQovE4thRpr9CfCjmWR@esme.iran.liara.ir:31051/postgres')}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
     }
 }
 
