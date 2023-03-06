@@ -1,15 +1,96 @@
 <!doctype html>
 <html lang="fa">
-  {% include "base/header.html" %}
-  <body class="vertical  light rtl">
-    <div class="wrapper">
-      {% block content %}
-      
-      {% endblock content %}
-      
-    </div> <!-- .wrapper -->
-    {% include "base/scripts.html" %}
-    {% block moreScript %}
-    {% endblock moreScript %}
-  </body>
+    {% include "base/header.html" %}
+    <body class="vertical  light rtl">
+        <div class="wrapper">
+            {% block content %}
+            {% endblock content %}
+            <br>
+            <br>
+            <br>
+            <div>
+                <h1 class="text-center">ثبت نام جشنواره سفیران ظهور</h1>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="card shadow mb">
+                        <div class="card-header">
+                            <strong class="card-title">فرم ثبت نام شرکت کنندگان</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md">
+                                    {% if message %}
+                                        <div class="alert alert-success alert-dismissible fade show text-success"
+                                             role="alert">
+                                            <strong class="text-success">
+                                                {{ message }}
+                                                <br>
+                                                {{ kid }}
+                                                
+                                            </strong>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                    {% endif %}
+                                    {% if error %}
+                                        <div class="alert alert-danger alert-dismissible fade show text-danger"
+                                             role="alert">
+                                            <strong class="text-danger">
+                                                {{ error }}
+                                                {% if kid %}
+                                                    - اطلاعات شرکت کننده :
+                                                    {{ kid }}
+                                                {% endif %}
+                                            </strong>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                    {% endif %}
+                                    <form action="{% url 'register' %}"
+                                          method="POST"
+                                          autocomplete="off"
+                                          id="register"
+                                          novalidate>
+                                        {% csrf_token %}
+                                        <!-- form inputs-->
+                                        {% for field in form %}
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-lg-3 col-sm-12">{{ field.label_tag }}</label>
+                                                <div class="col-lg-9 col-md-9 col-sm-12">
+                                                    {{ field }}
+                                                    <div class="invalid-feedback">مقدار مناسب را وارد کنید.</div>
+                                                    {% for error in field.errors %}
+                                                        <div class="feedbackinvalid">ورودی را خالی نگذارید و مقدار مناسب وارد کنید.</div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="cmc" name="cmc">
+                                            <label class="custom-control-label" for="cmc">تایید ثبت نام بدون کد ملی</label>
+                                        </div>
+                                        <br>
+                                        <!-- form inputs-->
+                                        <button type="submit" class="btn mb-2 btn-primary btn-lg btn-block">ثبت نام</button>
+                                    </div>
+                                    <!-- /.col -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        <!-- .wrapper -->
+        {% include "base/scripts.html" %}
+        {% block moreScript %}
+        {% endblock moreScript %}
+    </body>
 </html>
