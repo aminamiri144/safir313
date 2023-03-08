@@ -19,7 +19,6 @@ class RegisterView(LoginRequiredMixin, View):
         kid_form = KidForm(request.POST)
         context['form'] = kid_form
         cmc = True if request.POST.get("cmc") == 'on' else False
-        print(cmc)
         if kid_form.is_valid():
             code_meli = kid_form.cleaned_data['codmeli']
             phone = kid_form.cleaned_data['phone']
